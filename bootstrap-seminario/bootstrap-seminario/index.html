@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-bs-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap na prática – Seminário Web 1</title>
+
+  <!-- Fonte (opcional; há fallback no SCSS) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- CSS gerado por `npm run build` a partir de scss/custom.scss -->
+  <link rel="stylesheet" href="css/custom.css">
+</head>
+<body>
+
+  <!-- ====================== NAVBAR ====================== -->
+  <nav class="navbar navbar-expand-md bg-body-tertiary border-bottom">
+    <div class="container">
+      <a class="navbar-brand fw-bold text-primary" href="#">Bootstrap</a>
+
+      <!-- data-bs-toggle / data-bs-target: o framework liga o botão ao alvo sem JS próprio -->
+      <button class="navbar-toggler" type="button"
+              data-bs-toggle="collapse" data-bs-target="#menu"
+              aria-controls="menu" aria-expanded="false" aria-label="Abrir menu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item"><a class="nav-link" href="#grid">Grid</a></li>
+          <li class="nav-item"><a class="nav-link" href="#estado">Estado no DOM</a></li>
+          <li class="nav-item"><a class="nav-link" href="#api">API JavaScript</a></li>
+          <li class="nav-item"><a class="nav-link" href="#form">Formulário</a></li>
+        </ul>
+        <button id="btn-tema" type="button" class="btn btn-outline-primary btn-sm">Tema escuro</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ====================== HERO ====================== -->
+  <header class="demo-hero py-5">
+    <div class="container py-md-4">
+      <h1 class="display-5">Bootstrap na prática</h1>
+      <p class="lead mb-0 col-lg-7">
+        Cinco exemplos curtos que mostram como o framework funciona: classes CSS,
+        atributos <code class="text-white">data-bs-*</code>, API JavaScript e temas.
+        Nenhum deles usa Virtual DOM ou build de aplicação.
+      </p>
+    </div>
+  </header>
+
+  <main class="container py-5">
+
+    <!-- ====================== 1. GRID ====================== -->
+    <section id="grid" class="mb-5">
+      <h2 class="h3">1. Grid responsivo (mobile-first)</h2>
+      <p class="text-body-secondary col-lg-8">
+        Redimensione a janela. Sem prefixo, a coluna ocupa 12 de 12; a partir de
+        <code>md</code> são duas por linha; a partir de <code>lg</code>, três.
+      </p>
+      <div class="row g-3">
+        <div class="col-12 col-md-6 col-lg-4"><div class="demo-bloco">col-12 col-md-6 col-lg-4</div></div>
+        <div class="col-12 col-md-6 col-lg-4"><div class="demo-bloco">col-12 col-md-6 col-lg-4</div></div>
+        <div class="col-12 col-md-12 col-lg-4"><div class="demo-bloco">col-12 col-md-12 col-lg-4</div></div>
+      </div>
+    </section>
+
+    <!-- ====================== 2. ESTADO NO DOM ====================== -->
+    <section id="estado" class="mb-5">
+      <h2 class="h3">2. Estado visual guardado no DOM</h2>
+      <p class="text-body-secondary col-lg-8">
+        O Bootstrap não tem estado de dados. O estado do componente é uma classe
+        CSS (<code>show</code>) e um atributo ARIA (<code>aria-expanded</code>).
+        O painel abaixo lê esses valores diretamente do elemento.
+      </p>
+
+      <div class="row g-4">
+        <div class="col-lg-6">
+          <button id="btn-detalhes" class="btn btn-primary" type="button"
+                  data-bs-toggle="collapse" data-bs-target="#detalhes"
+                  aria-expanded="false" aria-controls="detalhes">
+            Mostrar detalhes
+          </button>
+
+          <div class="collapse" id="detalhes">
+            <div class="card card-body mt-3">
+              Este bloco aparece e some sem nenhuma linha de JavaScript nossa.
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-body">
+              <p class="mb-1"><strong>Classes do alvo:</strong> <code id="estado-classes" class="demo-classes"></code></p>
+              <p class="mb-3"><strong>aria-expanded do botão:</strong> <code id="estado-aria" class="demo-classes"></code></p>
+              <p class="mb-1 fw-semibold">Eventos recebidos</p>
+              <ul id="estado-log" class="list-group list-group-flush demo-log" aria-live="polite"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================== 3. API JS ====================== -->
+    <section id="api" class="mb-5">
+      <h2 class="h3">3. API JavaScript: modal e toast</h2>
+      <p class="text-body-secondary col-lg-8">
+        O modal abre por atributos <code>data-bs-*</code>. O botão Confirmar usa a
+        API (<code>Modal.getInstance</code> e <code>Toast.getOrCreateInstance</code>)
+        em <code>js/main.js</code>.
+      </p>
+
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-exemplo">
+        Excluir item
+      </button>
+
+      <div class="modal fade" id="modal-exemplo" tabindex="-1" aria-labelledby="modal-titulo" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3 class="modal-title h5" id="modal-titulo">Excluir item?</h3>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+            </div>
+            <div class="modal-body">Esta ação não pode ser desfeita.</div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+              <button type="button" id="btn-confirmar" class="btn btn-primary">Excluir</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================== 4. FORMULÁRIO ====================== -->
+    <section id="form" class="mb-5">
+      <h2 class="h3">4. Formulário com validação nativa</h2>
+      <p class="text-body-secondary col-lg-8">
+        O Bootstrap só estiliza. Quem valida é o navegador (<code>checkValidity</code>);
+        a classe <code>was-validated</code> faz os estados válido e inválido aparecerem.
+      </p>
+
+      <form id="form-contato" class="row g-3 col-lg-8" novalidate>
+        <div class="col-md-6">
+          <label for="nome" class="form-label">Nome</label>
+          <input type="text" class="form-control" id="nome" required minlength="3">
+          <div class="invalid-feedback">Informe pelo menos 3 letras.</div>
+        </div>
+        <div class="col-md-6">
+          <label for="email" class="form-label">E-mail</label>
+          <input type="email" class="form-control" id="email" required>
+          <div class="invalid-feedback">Informe um e-mail no formato nome@exemplo.com.</div>
+        </div>
+        <div class="col-12">
+          <button class="btn btn-primary" type="submit">Enviar</button>
+        </div>
+      </form>
+    </section>
+
+  </main>
+
+  <footer class="border-top py-4 text-body-secondary">
+    <div class="container small">
+      Seminário Web 1 · Bootstrap 5.3.3 · IFRS Campus Farroupilha
+    </div>
+  </footer>
+
+  <!-- Toast (fica fixo no canto da tela) -->
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="toast-aviso" class="toast" role="status" aria-live="polite" aria-atomic="true">
+      <div class="toast-header">
+        <strong class="me-auto">Bootstrap</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Fechar"></button>
+      </div>
+      <div class="toast-body" id="toast-texto"></div>
+    </div>
+  </div>
+
+  <!-- JS do Bootstrap (bundle inclui o Popper) e o script da demo -->
+  <script src="js/vendor/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

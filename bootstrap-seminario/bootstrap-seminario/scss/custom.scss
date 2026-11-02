@@ -1,0 +1,70 @@
+// ============================================================
+// Customização do Bootstrap com Sass
+// 1) Sobrescrever variáveis ANTES de importar o framework
+// 2) Importar apenas os módulos usados (reduz o CSS final)
+// ============================================================
+
+// --- 1. Variáveis (design tokens) ------------------------------------
+$primary: #a21fc8;
+$font-family-sans-serif: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+$border-radius: 0.75rem;
+$border-radius-lg: 1rem;
+$enable-shadows: false;
+$headings-font-weight: 700;
+
+// --- 2. Núcleo obrigatório (nesta ordem) -------------------------------
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/variables-dark';
+@import 'bootstrap/scss/maps';
+@import 'bootstrap/scss/mixins';
+@import 'bootstrap/scss/utilities';
+
+// --- 3. Somente os componentes usados na demo ----------------------------
+@import 'bootstrap/scss/root';
+@import 'bootstrap/scss/reboot';
+@import 'bootstrap/scss/type';
+@import 'bootstrap/scss/containers';
+@import 'bootstrap/scss/grid';
+@import 'bootstrap/scss/forms';
+@import 'bootstrap/scss/buttons';
+@import 'bootstrap/scss/transitions'; // .collapse, .fade
+@import 'bootstrap/scss/nav';
+@import 'bootstrap/scss/navbar';
+@import 'bootstrap/scss/card';
+@import 'bootstrap/scss/badge';
+@import 'bootstrap/scss/alert';
+@import 'bootstrap/scss/close';
+@import 'bootstrap/scss/toasts';
+@import 'bootstrap/scss/modal';
+@import 'bootstrap/scss/list-group';
+
+// --- 4. Helpers e API de utilitários (sempre por último) ---------------
+@import 'bootstrap/scss/helpers';
+@import 'bootstrap/scss/utilities/api';
+
+// --- 5. Estilos próprios da demo (usam variáveis CSS do Bootstrap) -----
+.demo-hero {
+  background: var(--bs-primary);
+  color: #fff;
+}
+
+.demo-bloco {
+  // marca visual das colunas do grid
+  background: var(--bs-primary-bg-subtle);
+  border: 1px solid var(--bs-primary-border-subtle);
+  border-radius: var(--bs-border-radius);
+  padding: 1rem;
+}
+
+.demo-log {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.8125rem;
+  max-height: 11rem;
+  overflow-y: auto;
+}
+
+code.demo-classes {
+  color: var(--bs-primary-text-emphasis);
+  word-break: break-word;
+}
